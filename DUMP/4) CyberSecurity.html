@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Security | Christian Joshua P. Mendigoria</title>
+
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://images.pexels.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://images.pexels.com">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <link rel="stylesheet" href="shared.css">
+    <style>
+        .cyber-header-banner {
+            background: linear-gradient(135deg, #1a0008 0%, #4a000e 50%, #8b0000 100%);
+            border-radius: 20px; padding: 2.5rem; margin-bottom: 2rem;
+            position: relative; overflow: hidden;
+            animation: fadeInDown 0.55s ease both;
+        }
+        .cyber-header-banner::before {
+            content: ''; position: absolute; inset: 0;
+            background: url('https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&w=800') center/cover;
+            opacity: 0.08;
+        }
+        .cyber-header-banner h2 { font-size: 1.6rem; font-weight: 800; color: #ff4757; z-index: 1; position: relative; }
+        .cyber-header-banner p { color: rgba(255,255,255,0.6); font-size: 0.9rem; margin-top: 0.4rem; z-index: 1; position: relative; }
+        .warning-badge {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.35rem 1rem; border-radius: 20px; font-size: 0.75rem; font-weight: 700;
+            background: rgba(220,20,60,0.2); color: #ff6b7a; border: 1px solid rgba(220,20,60,0.3);
+            margin-top: 1rem; z-index: 1; position: relative;
+        }
+        .dark-mode .filter-pill:hover, .dark-mode .filter-pill.active {
+            background: #dc143c; border-color: #dc143c;
+        }
+        .light-mode .filter-pill:hover, .light-mode .filter-pill.active {
+            background: #dc143c; border-color: #dc143c; color: white;
+        }
+        .dark-mode .view-btn { background: linear-gradient(135deg, #8b0000, #dc143c); }
+        .dark-mode .project-card:hover { box-shadow: 0 16px 36px rgba(220,20,60,0.25); }
+        .light-mode .project-card:hover { box-shadow: 0 16px 36px rgba(220,20,60,0.2); }
+        .defense-box { border-left-color: #dc143c !important; }
+        .dark-mode .defense-box { background: rgba(220,20,60,0.08) !important; }
+    </style>
+</head>
+<body class="dark-mode">
+<button class="mobile-menu-toggle" id="mobileMenuToggle" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></button>
+
+<div class="page-container">
+    <aside class="sidebar" id="sidebar">
+        <div class="profile">
+            <div class="profile-avatar"><i class="fas fa-user"></i></div>
+            <div class="profile-name">CHRISTIAN JOSHUA P. MENDIGORIA</div>
+            <div class="profile-role">Full Stack Developer</div>
+            <a href="#" class="resume-btn" onclick="downloadResume(event)"><i class="fas fa-download"></i> Resume</a>
+        </div>
+        <nav>
+            <ul class="nav-list">
+                <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i><span>Home</span></a></li>
+                <li><a href="2) ClientProject.html" class="nav-link"><i class="fas fa-briefcase"></i><span>Project</span></a></li>
+                <li><a href="4) CyberSecurity.html" class="nav-link active"><i class="fas fa-shield-alt"></i><span>Cyber Security</span></a></li>
+                <li class="has-dropdown">
+                    <a href="#" class="nav-link" onclick="toggleDropdown(event)">
+                        <i class="fas fa-palette"></i><span>Creative Works</span>
+                        <i class="fas fa-chevron-down dropdown-arrow"></i>
+                    </a>
+                    <ul class="dropdown-list">
+                        <li><a href="5.2) VideoEditing.html" class="dropdown-link"><i class="fas fa-video"></i> Video Editing</a></li>
+                        <li><a href="5.1) PhotoEditing.html" class="dropdown-link"><i class="fas fa-camera"></i> Photo Editing</a></li>
+                    </ul>
+                </li>
+                <li><a href="6) Shop.html" class="nav-link"><i class="fas fa-shopping-cart"></i><span>Shop</span></a></li>
+                <li><a href="7) Reviews.html" class="nav-link"><i class="fas fa-star"></i><span>Reviews</span></a></li>
+                <li><a href="8) AboutMe.html" class="nav-link"><i class="fas fa-user"></i><span>About Me</span></a></li>
+                <li><a href="9) TypingGame.html" class="nav-link nav-link-game"><i class="fas fa-gamepad"></i><span>Play A Game</span></a></li>
+            </ul>
+        </nav>
+        <div class="mode-toggle" onclick="toggleMode()">
+            <span><i class="fas fa-moon" id="modeIcon"></i> <span id="modeLabel">Dark Mode</span></span>
+            <div class="toggle-track" id="toggleTrack"><div class="toggle-thumb"></div></div>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <div class="cyber-header-banner">
+            <h2><i class="fas fa-shield-alt"></i> Cyber Security Projects</h2>
+            <p>Educational demonstrations of security threats and defense strategies</p>
+            <div class="warning-badge"><i class="fas fa-exclamation-triangle"></i> For Educational Purposes Only</div>
+        </div>
+
+        <div class="search-wrap">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Search security projects..." oninput="filterCards()">
+            </div>
+        </div>
+
+        <div class="filter-row">
+            <button class="filter-pill active" onclick="setFilter(this,'all')">ALL</button>
+            <button class="filter-pill" onclick="setFilter(this,'password-attack')">PASSWORD ATTACK</button>
+            <button class="filter-pill" onclick="setFilter(this,'mitm')">MITM</button>
+            <button class="filter-pill" onclick="setFilter(this,'malware')">MALWARE</button>
+            <button class="filter-pill" onclick="setFilter(this,'dos')">DOS</button>
+            <button class="filter-pill" onclick="setFilter(this,'phishing')">PHISHING</button>
+            <button class="filter-pill" onclick="setFilter(this,'pharming')">PHARMING</button>
+            <button class="filter-pill" onclick="setFilter(this,'sql-injection')">SQL INJECTION</button>
+            <button class="filter-pill" onclick="setFilter(this,'cryptojacking')">CRYPTOJACKING</button>
+            <button class="filter-pill" onclick="setFilter(this,'social-engineering')">SOCIAL ENGINEERING</button>
+        </div>
+
+        <div class="card-grid" id="cardGrid">
+            <div class="project-card" data-cat="password-attack" data-title="Brute Force Attack Demo">
+                <div class="card-img-wrap">
+                    <img src="https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&w=400" alt="Brute Force" class="card-img" loading="lazy" decoding="async">
+                    <div class="card-overlay"><i class="fas fa-eye"></i></div>
+                </div>
+                <div class="card-body">
+                    <span class="card-tag" style="color:#ff6b7a;border-color:rgba(220,20,60,0.3);background:rgba(220,20,60,0.1);"><i class="fas fa-lock"></i> Password Attack</span>
+                    <div class="card-title">Brute Force Attack Demo</div>
+                    <div class="card-desc">Educational demonstration of password brute force attacks and dictionary attacks</div>
+                    <button class="view-btn" onclick="openModal('security1')"><i class="fas fa-eye"></i> View Project</button>
+                </div>
+            </div>
+            <div class="project-card" data-cat="mitm" data-title="Man-in-the-Middle Attack">
+                <div class="card-img-wrap">
+                    <img src="https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&w=400" alt="MITM" class="card-img" loading="lazy" decoding="async">
+                    <div class="card-overlay"><i class="fas fa-eye"></i></div>
+                </div>
+                <div class="card-body">
+                    <span class="card-tag" style="color:#ff6b7a;border-color:rgba(220,20,60,0.3);background:rgba(220,20,60,0.1);"><i class="fas fa-user-secret"></i> MITM</span>
+                    <div class="card-title">Man-in-the-Middle Attack</div>
+                    <div class="card-desc">Demonstration of network interception and how MITM attacks compromise data</div>
+                    <button class="view-btn" onclick="openModal('security2')"><i class="fas fa-eye"></i> View Project</button>
+                </div>
+            </div>
+            <div class="project-card" data-cat="malware" data-title="Malware Analysis Lab">
+                <div class="card-img-wrap">
+                    <img src="https://images.pexels.com/photos/5380664/pexels-photo-5380664.jpeg?auto=compress&w=400" alt="Malware" class="card-img" loading="lazy" decoding="async">
+                    <div class="card-overlay"><i class="fas fa-eye"></i></div>
+                </div>
+                <div class="card-body">
+                    <span class="card-tag" style="color:#ff6b7a;border-color:rgba(220,20,60,0.3);background:rgba(220,20,60,0.1);"><i class="fas fa-bug"></i> Malware</span>
+                    <div class="card-title">Malware Analysis Lab</div>
+                    <div class="card-desc">Controlled environment for analyzing malware behavior and infection vectors</div>
+                    <button class="view-btn" onclick="openModal('security3')"><i class="fas fa-eye"></i> View Project</button>
+                </div>
+            </div>
+            <div class="project-card" data-cat="dos" data-title="DDoS Attack Simulation">
+                <div class="card-img-wrap">
+                    <img src="https://images.pexels.com/photos/1148820/pexels-photo-1148820.jpeg?auto=compress&w=400" alt="DDoS" class="card-img" loading="lazy" decoding="async">
+                    <div class="card-overlay"><i class="fas fa-eye"></i></div>
+                </div>
+                <div class="card-body">
+                    <span class="card-tag" style="color:#ff6b7a;border-color:rgba(220,20,60,0.3);background:rgba(220,20,60,0.1);"><i class="fas fa-network-wired"></i> DoS</span>
+                    <div class="card-title">DDoS Attack Simulation</div>
+                    <div class="card-desc">Educational simulation of Distributed Denial of Service attacks and mitigation</div>
+                    <button class="view-btn" onclick="openModal('security4')"><i class="fas fa-eye"></i> View Project</button>
+                </div>
+            </div>
+            <div class="project-card" data-cat="phishing" data-title="Phishing Campaign Analysis">
+                <div class="card-img-wrap">
+                    <img src="https://images.pexels.com/photos/4108715/pexels-photo-4108715.jpeg?auto=compress&w=400" alt="Phishing" class="card-img" loading="lazy" decoding="async">
+                    <div class="card-overlay"><i class="fas fa-eye"></i></div>
+                </div>
+                <div class="card-body">
+                    <span class="card-tag" style="color:#ff6b7a;border-color:rgba(220,20,60,0.3);background:rgba(220,20,60,0.1);"><i class="fas fa-fish"></i> Phishing</span>
+                    <div class="card-title">Phishing Campaign Analysis</div>
+                    <div class="card-desc">Study of phishing techniques and how to identify fraudulent communications</div>
+                    <button class="view-btn" onclick="openModal('security5')"><i class="fas fa-eye"></i> View Project</button>
+                </div>
+            </div>
+            <div class="project-card" data-cat="pharming" data-title="DNS Spoofing Demo">
+                <div class="card-img-wrap">
+                    <img src="https://images.pexels.com/photos/2881229/pexels-photo-2881229.jpeg?auto=compress&w=400" alt="DNS Spoofing" class="card-img" loading="lazy" decoding="async">
+                    <div class="card-overlay"><i class="fas fa-eye"></i></div>
+                </div>
+                <div class="card-body">
+                    <span class="card-tag" style="color:#ff6b7a;border-color:rgba(220,20,60,0.3);background:rgba(220,20,60,0.1);"><i class="fas fa-server"></i> Pharming</span>
+                    <div class="card-title">DNS Spoofing Demo</div>
+                    <div class="card-desc">Demonstration of pharming attacks through DNS cache poisoning</div>
+                    <button class="view-btn" onclick="openModal('security6')"><i class="fas fa-eye"></i> View Project</button>
+                </div>
+            </div>
+            <div class="project-card" data-cat="sql-injection" data-title="SQL Injection Tutorial">
+                <div class="card-img-wrap">
+                    <img src="https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&w=400" alt="SQL Injection" class="card-img" loading="lazy" decoding="async">
+                    <div class="card-overlay"><i class="fas fa-eye"></i></div>
+                </div>
+                <div class="card-body">
+                    <span class="card-tag" style="color:#ff6b7a;border-color:rgba(220,20,60,0.3);background:rgba(220,20,60,0.1);"><i class="fas fa-database"></i> SQL Injection</span>
+                    <div class="card-title">SQL Injection Tutorial</div>
+                    <div class="card-desc">Educational demonstration of SQL injection vulnerabilities and prevention</div>
+                    <button class="view-btn" onclick="openModal('security7')"><i class="fas fa-eye"></i> View Project</button>
+                </div>
+            </div>
+            <div class="project-card" data-cat="cryptojacking" data-title="Cryptojacking Detection">
+                <div class="card-img-wrap">
+                    <img src="https://images.pexels.com/photos/844124/pexels-photo-844124.jpeg?auto=compress&w=400" alt="Cryptojacking" class="card-img" loading="lazy" decoding="async">
+                    <div class="card-overlay"><i class="fas fa-eye"></i></div>
+                </div>
+                <div class="card-body">
+                    <span class="card-tag" style="color:#ff6b7a;border-color:rgba(220,20,60,0.3);background:rgba(220,20,60,0.1);"><i class="fab fa-bitcoin"></i> Cryptojacking</span>
+                    <div class="card-title">Cryptojacking Detection</div>
+                    <div class="card-desc">Tools and techniques for detecting unauthorized cryptocurrency mining</div>
+                    <button class="view-btn" onclick="openModal('security8')"><i class="fas fa-eye"></i> View Project</button>
+                </div>
+            </div>
+            <div class="project-card" data-cat="social-engineering" data-title="Social Engineering Case Study">
+                <div class="card-img-wrap">
+                    <img src="https://images.pexels.com/photos/3760067/pexels-photo-3760067.jpeg?auto=compress&w=400" alt="Social Engineering" class="card-img" loading="lazy" decoding="async">
+                    <div class="card-overlay"><i class="fas fa-eye"></i></div>
+                </div>
+                <div class="card-body">
+                    <span class="card-tag" style="color:#ff6b7a;border-color:rgba(220,20,60,0.3);background:rgba(220,20,60,0.1);"><i class="fas fa-users"></i> Social Engineering</span>
+                    <div class="card-title">Social Engineering Case Study</div>
+                    <div class="card-desc">Analysis of social engineering tactics and psychological manipulation techniques</div>
+                    <button class="view-btn" onclick="openModal('security9')"><i class="fas fa-eye"></i> View Project</button>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<div class="modal-backdrop" id="modal">
+    <div class="modal-box">
+        <div class="modal-header">
+            <div class="modal-title-text" id="mTitle"></div>
+            <button class="modal-close-btn" onclick="closeModal()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="modal-body">
+            <div class="modal-section"><h3>Video Walkthrough</h3><div class="video-wrap"><iframe id="mVideo" src="" frameborder="0" allowfullscreen></iframe></div></div>
+            <div class="modal-section">
+                <h3><i class="fas fa-shield-alt" style="color:#dc143c;margin-right:0.4rem;"></i> How to Defend Yourself</h3>
+                <div class="defense-box"><p id="mDefense"></p></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="shared.js"></script>
+<script>
+const securityData = {
+    security1:{title:"Brute Force Attack Demo",video:"https://www.youtube.com/embed/dQw4w9WgXcQ",defense:"Use strong, complex passwords with at least 12 characters including uppercase, lowercase, numbers, and symbols. Enable multi-factor authentication (MFA) on all accounts. Implement account lockout policies after failed login attempts. Use a password manager to generate and store unique passwords for each account. Consider using passphrases instead of passwords. Enable CAPTCHA on login forms to prevent automated attacks."},
+    security2:{title:"Man-in-the-Middle Attack",video:"https://www.youtube.com/embed/dQw4w9WgXcQ",defense:"Always use HTTPS connections and verify SSL certificates before entering sensitive information. Avoid using public Wi-Fi for sensitive transactions; use a VPN when necessary. Keep your operating system and browsers updated. Use end-to-end encryption for messaging apps. Be cautious of certificate warnings in your browser. Implement certificate pinning in mobile applications."},
+    security3:{title:"Malware Analysis Lab",video:"https://www.youtube.com/embed/dQw4w9WgXcQ",defense:"Install reputable antivirus and anti-malware software and keep it updated. Never download files or click links from untrusted sources. Keep all software and operating systems up to date with security patches. Use application whitelisting. Enable firewall protection on all devices. Regularly backup important data to offline storage. Be cautious of email attachments, even from known contacts."},
+    security4:{title:"DDoS Attack Simulation",video:"https://www.youtube.com/embed/dQw4w9WgXcQ",defense:"Use Content Delivery Networks (CDNs) to distribute traffic. Implement rate limiting and traffic filtering. Use DDoS protection services from your hosting provider. Configure firewalls to drop suspicious traffic patterns. Increase bandwidth and server capacity to handle traffic spikes. Use load balancers to distribute traffic evenly. Have an incident response plan ready."},
+    security5:{title:"Phishing Campaign Analysis",video:"https://www.youtube.com/embed/dQw4w9WgXcQ",defense:"Always verify sender email addresses carefully. Never click links in unexpected emails. Hover over links to preview the actual destination before clicking. Be suspicious of urgent requests for personal information. Check for spelling and grammatical errors. Enable email filters and spam protection. Use anti-phishing browser extensions. Verify requests through alternative communication channels."},
+    security6:{title:"DNS Spoofing Demo",video:"https://www.youtube.com/embed/dQw4w9WgXcQ",defense:"Use secure DNS services like Cloudflare or Google Public DNS that support DNSSEC. Enable DNSSEC validation on your network. Use a VPN to encrypt DNS queries. Clear your DNS cache regularly. Use HTTPS everywhere to encrypt your web traffic. Monitor your router's DNS settings for unauthorized changes. Keep your router firmware updated."},
+    security7:{title:"SQL Injection Tutorial",video:"https://www.youtube.com/embed/dQw4w9WgXcQ",defense:"Always use parameterized queries (prepared statements) instead of concatenating user input. Implement proper input validation and sanitization. Use stored procedures with parameterized inputs. Apply the principle of least privilege to database accounts. Use web application firewalls (WAF). Regular security audits and penetration testing. Keep database management systems updated."},
+    security8:{title:"Cryptojacking Detection",video:"https://www.youtube.com/embed/dQw4w9WgXcQ",defense:"Monitor CPU usage for unexpected spikes. Use browser extensions that block cryptocurrency mining scripts. Keep your browser and OS updated. Use ad blockers which often block mining scripts. Disable JavaScript on untrusted websites. Install anti-malware that detects cryptojacking. Monitor network traffic for connections to known mining pools."},
+    security9:{title:"Social Engineering Case Study",video:"https://www.youtube.com/embed/dQw4w9WgXcQ",defense:"Be skeptical of unsolicited contacts requesting sensitive information. Verify the identity of anyone requesting information through independent channels. Never share passwords or security codes over phone or email. Be cautious of creating a sense of urgency. Question requests that bypass normal procedures. Don't overshare personal information on social media. Report suspicious requests to security personnel."}
+};
+
+function openModal(id){
+    const d=securityData[id];
+    document.getElementById('mTitle').textContent=d.title;
+    document.getElementById('mVideo').src=d.video;
+    document.getElementById('mDefense').textContent=d.defense;
+    document.getElementById('modal').classList.add('open');
+}
+function closeModal(){
+    document.getElementById('modal').classList.remove('open');
+    document.getElementById('mVideo').src='';
+}
+document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+
+function setFilter(btn,cat){
+    document.querySelectorAll('.filter-pill').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.project-card').forEach(c=>{
+        c.style.display=(cat==='all'||c.dataset.cat===cat)?'':'none';
+    });
+}
+function filterCards(){
+    const q=document.getElementById('searchInput').value.toLowerCase();
+    document.querySelectorAll('.project-card').forEach(c=>{
+        const t=(c.dataset.title+' '+c.querySelector('.card-desc').textContent).toLowerCase();
+        c.style.display=t.includes(q)?'':'none';
+    });
+}
+</script>
+</body>
+</html>

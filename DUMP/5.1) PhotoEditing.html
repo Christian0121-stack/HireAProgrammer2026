@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Editing | Christian Joshua P. Mendigoria</title>
+
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://images.pexels.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://images.pexels.com">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <link rel="stylesheet" href="shared.css">
+    <style>
+        .photo-modal-img { width: 100%; border-radius: 12px; margin-bottom: 1rem; display: block; }
+        .before-after { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-bottom: 1rem; }
+        .ba-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; opacity: 0.5; margin-bottom: 0.3rem; }
+        .ba-img { width: 100%; border-radius: 8px; display: block; }
+        .software-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+        .software-tag {
+            padding: 0.25rem 0.7rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600;
+            background: rgba(0,89,179,0.12); color: #0059b3; border: 1px solid rgba(0,89,179,0.2);
+        }
+        .dark-mode .software-tag { color: #60a5fa; background: rgba(96,165,250,0.1); border-color: rgba(96,165,250,0.2); }
+        .steps-list { list-style: none; }
+        .step-item {
+            display: flex; gap: 1rem; padding: 1rem; border-radius: 10px;
+            margin-bottom: 0.7rem; transition: all 0.3s; border-left: 3px solid #0059b3;
+        }
+        .dark-mode .step-item { background: rgba(255,255,255,0.04); }
+        .light-mode .step-item { background: #f5f8ff; }
+        .step-item:hover { transform: translateX(4px); }
+        .step-num {
+            width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+            background: linear-gradient(135deg, #001f3f, #0059b3);
+            color: white; display: flex; align-items: center; justify-content: center;
+            font-size: 0.85rem; font-weight: 700;
+        }
+        .step-content h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.3rem; }
+        .step-content p { font-size: 0.83rem; opacity: 0.65; line-height: 1.5; }
+    </style>
+</head>
+<body class="dark-mode">
+<button class="mobile-menu-toggle" id="mobileMenuToggle" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></button>
+
+<div class="page-container">
+    <aside class="sidebar" id="sidebar">
+        <div class="profile">
+            <div class="profile-avatar"><i class="fas fa-user"></i></div>
+            <div class="profile-name">CHRISTIAN JOSHUA P. MENDIGORIA</div>
+            <div class="profile-role">Full Stack Developer</div>
+            <a href="#" class="resume-btn" onclick="downloadResume(event)"><i class="fas fa-download"></i> Resume</a>
+        </div>
+        <nav>
+            <ul class="nav-list">
+                <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i><span>Home</span></a></li>
+                <li><a href="2) ClientProject.html" class="nav-link"><i class="fas fa-briefcase"></i><span>Project</span></a></li>
+                <li><a href="4) CyberSecurity.html" class="nav-link"><i class="fas fa-shield-alt"></i><span>Cyber Security</span></a></li>
+                <li class="has-dropdown">
+                    <a href="#" class="nav-link active" onclick="toggleDropdown(event)">
+                        <i class="fas fa-palette"></i><span>Creative Works</span>
+                        <i class="fas fa-chevron-down dropdown-arrow"></i>
+                    </a>
+                    <ul class="dropdown-list">
+                        <li><a href="5.2) VideoEditing.html" class="dropdown-link"><i class="fas fa-video"></i> Video Editing</a></li>
+                        <li><a href="5.1) PhotoEditing.html" class="dropdown-link"><i class="fas fa-camera"></i> Photo Editing</a></li>
+                    </ul>
+                </li>
+                <li><a href="6) Shop.html" class="nav-link"><i class="fas fa-shopping-cart"></i><span>Shop</span></a></li>
+                <li><a href="7) Reviews.html" class="nav-link"><i class="fas fa-star"></i><span>Reviews</span></a></li>
+                <li><a href="8) AboutMe.html" class="nav-link"><i class="fas fa-user"></i><span>About Me</span></a></li>
+                <li><a href="9) TypingGame.html" class="nav-link nav-link-game"><i class="fas fa-gamepad"></i><span>Play A Game</span></a></li>
+            </ul>
+        </nav>
+        <div class="mode-toggle" onclick="toggleMode()">
+            <span><i class="fas fa-moon" id="modeIcon"></i> <span id="modeLabel">Dark Mode</span></span>
+            <div class="toggle-track" id="toggleTrack"><div class="toggle-thumb"></div></div>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <div class="page-header">
+            <h1><i class="fas fa-camera"></i> Photo Editing</h1>
+            <p>Professional photo editing and enhancement portfolio</p>
+        </div>
+
+        <div class="search-wrap">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Search photo projects..." oninput="filterCards()">
+            </div>
+        </div>
+
+        <div class="card-grid" id="cardGrid">
+            <div class="project-card" data-title="Portrait Retouching" onclick="openModal('portrait')">
+                <div class="card-img-wrap">
+                    <img src="https://images.pexels.com/photos/1130626/pexels-photo-1130626.jpeg?auto=compress&w=400" alt="Portrait" class="card-img" loading="lazy" decoding="async">
+                    <div class="card-overlay"><i class="fas fa-expand-alt"></i></div>
+                </div>
+                <div class="card-body">
+                    <span class="card-tag"><i class="fas fa-user"></i> Portrait</span>
+                    <div class="card-title">Portrait Retouching</div>
+                    <div class="card-desc">Professional skin retouching, color grading, and portrait enhancement</div>
+                </div>
+            </div>
+            <div class="project-card" data-title="Product Photography" onclick="openModal('product')">
+                <div class="card-img-wrap">
+                    <img src="https://images.pexels.com/photos/788946/pexels-photo-788946.jpeg?auto=compress&w=400" alt="Product" class="card-img" loading="lazy" decoding="async">
+                    <div class="card-overlay"><i class="fas fa-expand-alt"></i></div>
+                </div>
+                <div class="card-body">
+                    <span class="card-tag"><i class="fas fa-box"></i> Product</span>
+                    <div class="card-title">Product Photography</div>
+                    <div class="card-desc">Clean product shots with background removal and color correction</div>
+                </div>
+            </div>
+            <div class="project-card" data-title="Landscape Enhancement" onclick="openModal('landscape')">
+                <div class="card-img-wrap">
+                    <img src="https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg?auto=compress&w=400" alt="Landscape" class="card-img" loading="lazy" decoding="async">
+                    <div class="card-overlay"><i class="fas fa-expand-alt"></i></div>
+                </div>
+                <div class="card-body">
+                    <span class="card-tag"><i class="fas fa-mountain"></i> Landscape</span>
+                    <div class="card-title">Landscape Enhancement</div>
+                    <div class="card-desc">Sky replacement, color grading, and HDR processing for landscape photography</div>
+                </div>
+            </div>
+            <div class="project-card" data-title="Photo Manipulation" onclick="openModal('manipulation')">
+                <div class="card-img-wrap">
+                    <img src="https://images.pexels.com/photos/1629236/pexels-photo-1629236.jpeg?auto=compress&w=400" alt="Manipulation" class="card-img" loading="lazy" decoding="async">
+                    <div class="card-overlay"><i class="fas fa-expand-alt"></i></div>
+                </div>
+                <div class="card-body">
+                    <span class="card-tag"><i class="fas fa-magic"></i> Manipulation</span>
+                    <div class="card-title">Photo Manipulation</div>
+                    <div class="card-desc">Creative compositing and fantasy photo manipulation artwork</div>
+                </div>
+            </div>
+            <div class="project-card" data-title="Wedding Photography Edit" onclick="openModal('wedding')">
+                <div class="card-img-wrap">
+                    <img src="https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg?auto=compress&w=400" alt="Wedding" class="card-img" loading="lazy" decoding="async">
+                    <div class="card-overlay"><i class="fas fa-expand-alt"></i></div>
+                </div>
+                <div class="card-body">
+                    <span class="card-tag"><i class="fas fa-heart"></i> Wedding</span>
+                    <div class="card-title">Wedding Photography Edit</div>
+                    <div class="card-desc">Elegant wedding photo editing with warm tones and cinematic grading</div>
+                </div>
+            </div>
+            <div class="project-card" data-title="Social Media Branding" onclick="openModal('social')">
+                <div class="card-img-wrap">
+                    <img src="https://images.pexels.com/photos/3408744/pexels-photo-3408744.jpeg?auto=compress&w=400" alt="Social Media" class="card-img" loading="lazy" decoding="async">
+                    <div class="card-overlay"><i class="fas fa-expand-alt"></i></div>
+                </div>
+                <div class="card-body">
+                    <span class="card-tag"><i class="fas fa-hashtag"></i> Branding</span>
+                    <div class="card-title">Social Media Branding</div>
+                    <div class="card-desc">Cohesive brand visuals for Instagram, Facebook, and other platforms</div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<div class="modal-backdrop" id="modal">
+    <div class="modal-box">
+        <div class="modal-header">
+            <div class="modal-title-text" id="mTitle"></div>
+            <button class="modal-close-btn" onclick="closeModal()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="modal-body">
+            <img src="" alt="" class="photo-modal-img" id="mImg">
+            <div class="modal-section"><h3>Description</h3><p id="mDesc"></p></div>
+            <div class="modal-section"><h3>Software Used</h3><div class="software-tags" id="mSoftware"></div></div>
+            <div class="modal-section">
+                <h3>Editing Process</h3>
+                <ul class="steps-list" id="mSteps"></ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="shared.js"></script>
+<script>
+const photoData = {
+    portrait:{title:"Portrait Retouching",img:"https://images.pexels.com/photos/1130626/pexels-photo-1130626.jpeg?auto=compress&w=800",desc:"Professional portrait retouching focusing on natural skin smoothing, color correction, and lighting enhancement. The goal is to enhance natural beauty while maintaining realistic results.",software:["Adobe Photoshop","Lightroom","Portraiture Plugin"],steps:[{n:"1",t:"Initial Assessment",d:"Analyze the raw image for exposure, white balance, and composition issues."},{n:"2",t:"Skin Retouching",d:"Use frequency separation for natural skin smoothing without plastic look."},{n:"3",t:"Color Correction",d:"Adjust white balance, skin tones, and overall color balance."},{n:"4",t:"Dodge & Burn",d:"Enhance facial contours and add depth using dodge and burn techniques."},{n:"5",t:"Final Polish",d:"Sharpen eyes, whiten teeth subtly, and apply final color grade."}]},
+    product:{title:"Product Photography",img:"https://images.pexels.com/photos/788946/pexels-photo-788946.jpeg?auto=compress&w=800",desc:"Professional product photo editing for e-commerce and marketing. Clean, bright backgrounds with accurate color representation to boost conversion rates.",software:["Adobe Photoshop","Lightroom","Capture One"],steps:[{n:"1",t:"Background Removal",d:"Precisely cut out the product using pen tool for clean edges."},{n:"2",t:"White Balance",d:"Ensure accurate color representation matching real product."},{n:"3",t:"Shadow Creation",d:"Add natural shadows for depth and realism."},{n:"4",t:"Color Correction",d:"Adjust brightness, contrast, and color accuracy."},{n:"5",t:"Export Optimization",d:"Export in multiple sizes and formats for different platforms."}]},
+    landscape:{title:"Landscape Enhancement",img:"https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg?auto=compress&w=800",desc:"Dramatic landscape photo enhancement combining HDR techniques, sky replacement, and color grading to create stunning natural scenery images.",software:["Adobe Lightroom","Photoshop","Luminar AI","Aurora HDR"],steps:[{n:"1",t:"Exposure Blending",d:"Combine multiple exposures to capture full dynamic range."},{n:"2",t:"Sky Replacement",d:"Replace dull skies with dramatic alternatives."},{n:"3",t:"Color Grading",d:"Apply cinematic color grade matching the mood."},{n:"4",t:"Detail Enhancement",d:"Sharpen foreground elements and add clarity."},{n:"5",t:"Final Adjustments",d:"Fine-tune contrast, vibrance, and saturation."}]},
+    manipulation:{title:"Photo Manipulation",img:"https://images.pexels.com/photos/1629236/pexels-photo-1629236.jpeg?auto=compress&w=800",desc:"Creative digital compositing that blends multiple images into seamless fantasy artwork. Each piece tells a unique story through visual storytelling.",software:["Adobe Photoshop","After Effects","Topaz Studio"],steps:[{n:"1",t:"Concept Planning",d:"Sketch the composition and gather reference images and assets."},{n:"2",t:"Background Creation",d:"Build the environment using multiple layered images and textures."},{n:"3",t:"Subject Integration",d:"Cut out and seamlessly blend subjects into the scene with matching lighting."},{n:"4",t:"Color Harmony",d:"Unify colors across all elements for believable compositing."},{n:"5",t:"Special Effects",d:"Add magical elements, particles, and light effects to complete the fantasy."}]},
+    wedding:{title:"Wedding Photography Edit",img:"https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg?auto=compress&w=800",desc:"Timeless wedding photo editing with warm, romantic tones. Creating beautiful memories that couples will treasure forever through careful, elegant editing.",software:["Adobe Lightroom","Photoshop","VSCO Presets"],steps:[{n:"1",t:"Culling & Selection",d:"Choose the best images that tell the complete wedding story."},{n:"2",t:"Base Exposure",d:"Standardize exposure and white balance across all images for consistency."},{n:"3",t:"Style Application",d:"Apply a signature warm, romantic preset as a starting point."},{n:"4",t:"Individual Adjustments",d:"Fine-tune each image for proper skin tones and environmental lighting."},{n:"5",t:"Album Layout",d:"Arrange selected images into a coherent and emotional album narrative."}]},
+    social:{title:"Social Media Branding",img:"https://images.pexels.com/photos/3408744/pexels-photo-3408744.jpeg?auto=compress&w=800",desc:"Creating cohesive visual brand identities for social media. Consistent editing style, branded overlays, and platform-optimized content for maximum engagement.",software:["Adobe Photoshop","Illustrator","Canva Pro","Lightroom"],steps:[{n:"1",t:"Brand Analysis",d:"Study brand colors, fonts, and personality to define visual style."},{n:"2",t:"Template Creation",d:"Design reusable templates for posts, stories, and highlights."},{n:"3",t:"Photo Editing",d:"Edit all photos with the same preset for visual consistency."},{n:"4",t:"Graphic Overlay",d:"Add branded text, icons, and decorative elements."},{n:"5",t:"Platform Optimization",d:"Resize and export content optimized for each social platform."}]}
+};
+
+function openModal(id){
+    const d=photoData[id];
+    document.getElementById('mTitle').textContent=d.title;
+    document.getElementById('mImg').src=d.img;
+    document.getElementById('mImg').alt=d.title;
+    document.getElementById('mDesc').textContent=d.desc;
+    document.getElementById('mSoftware').innerHTML=d.software.map(s=>`<span class="software-tag">${s}</span>`).join('');
+    document.getElementById('mSteps').innerHTML=d.steps.map(s=>`<li class="step-item"><div class="step-num">${s.n}</div><div class="step-content"><h4>${s.t}</h4><p>${s.d}</p></div></li>`).join('');
+    document.getElementById('modal').classList.add('open');
+}
+function closeModal(){document.getElementById('modal').classList.remove('open');}
+document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+
+function filterCards(){
+    const q=document.getElementById('searchInput').value.toLowerCase();
+    document.querySelectorAll('.project-card').forEach(c=>{
+        const t=(c.dataset.title+' '+c.querySelector('.card-desc').textContent).toLowerCase();
+        c.style.display=t.includes(q)?'':'none';
+    });
+}
+</script>
+</body>
+</html>

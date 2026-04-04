@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Projects | Christian Joshua P. Mendigoria</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="shared.css">
+</head>
+<body class="dark-mode">
+<button class="mobile-menu-toggle" id="mobileMenuToggle" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></button>
+
+<div class="page-container">
+    <aside class="sidebar" id="sidebar">
+        <div class="profile">
+            <div class="profile-avatar"><i class="fas fa-user"></i></div>
+            <div class="profile-name">CHRISTIAN JOSHUA P. MENDIGORIA</div>
+            <div class="profile-role">Full Stack Developer</div>
+            <a href="#" class="resume-btn" onclick="downloadResume(event)"><i class="fas fa-download"></i> Resume</a>
+        </div>
+        <nav>
+            <ul class="nav-list">
+                <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i><span>Home</span></a></li>
+                <li><a href="ClientProject.html" class="nav-link"><i class="fas fa-briefcase"></i><span>Client Project</span></a></li>
+                <li><a href="PersonalProject.html" class="nav-link active"><i class="fas fa-rocket"></i><span>Personal Project</span></a></li>
+                <li><a href="CyberSecurity.html" class="nav-link"><i class="fas fa-shield-alt"></i><span>Cyber Security</span></a></li>
+                <li class="has-dropdown">
+                    <a href="#" class="nav-link" onclick="toggleDropdown(event)"><i class="fas fa-palette"></i><span>Creative Works</span><i class="fas fa-chevron-down dropdown-arrow"></i></a>
+                    <ul class="dropdown-list">
+                        <li><a href="VideoEditing.html" class="dropdown-link"><i class="fas fa-video"></i> Video Editing</a></li>
+                        <li><a href="PhotoEditing.html" class="dropdown-link"><i class="fas fa-camera"></i> Photo Editing</a></li>
+                    </ul>
+                </li>
+                <li><a href="Shop.html" class="nav-link"><i class="fas fa-shopping-cart"></i><span>Shop</span></a></li>
+                <li><a href="Reviews.html" class="nav-link"><i class="fas fa-star"></i><span>Reviews</span></a></li>
+                <li><a href="AboutMe.html" class="nav-link"><i class="fas fa-user"></i><span>About Me</span></a></li>
+            </ul>
+        </nav>
+        <div class="mode-toggle" onclick="toggleMode()">
+            <span><i class="fas fa-moon" id="modeIcon"></i> <span id="modeLabel">Dark Mode</span></span>
+            <div class="toggle-track" id="toggleTrack"><div class="toggle-thumb"></div></div>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <div class="page-header">
+            <h1><i class="fas fa-rocket"></i> Personal Projects</h1>
+            <p>Passion projects and experiments showcasing creativity and innovation</p>
+        </div>
+
+        <div class="search-wrap">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Search projects..." oninput="filterCards()">
+            </div>
+        </div>
+
+        <div class="filter-row">
+            <button class="filter-pill active" onclick="setFilter(this,'all')">ALL</button>
+            <button class="filter-pill" onclick="setFilter(this,'website')">WEBSITE</button>
+            <button class="filter-pill" onclick="setFilter(this,'desktop')">DESKTOP APP</button>
+            <button class="filter-pill" onclick="setFilter(this,'android')">ANDROID</button>
+            <button class="filter-pill" onclick="setFilter(this,'ar')">AUGMENTED REALITY</button>
+            <button class="filter-pill" onclick="setFilter(this,'vr')">VIRTUAL REALITY</button>
+            <button class="filter-pill" onclick="setFilter(this,'cv')">COMPUTER VISION</button>
+            <button class="filter-pill" onclick="setFilter(this,'iot')">IOT</button>
+        </div>
+
+        <div class="card-grid" id="cardGrid">
+            <div class="project-card" data-cat="website" data-title="AI Chat Assistant">
+                <div class="card-img-wrap">
+                    <img src="https://images.pexels.com/photos/8438918/pexels-photo-8438918.jpeg" alt="AI Chat" class="card-img" loading="lazy">
+                    <div class="card-overlay"><i class="fas fa-eye"></i></div>
+                </div>
+                <div class="card-body">
+                    <span class="card-tag"><i class="fas fa-globe"></i> Website</span>
+                    <div class="card-title">AI Chat Assistant</div>
+                    <div class="card-desc">Web-based conversational AI using natural language processing for intelligent responses</div>
+                    <button class="view-btn" onclick="openModal('personal1')"><i class="fas fa-eye"></i> View Project</button>
+                </div>
+            </div>
+            <div class="project-card" data-cat="desktop" data-title="Code Editor">
+                <div class="card-img-wrap">
+                    <img src="https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg" alt="Code Editor" class="card-img" loading="lazy">
+                    <div class="card-overlay"><i class="fas fa-eye"></i></div>
+                </div>
+                <div class="card-body">
+                    <span class="card-tag"><i class="fas fa-desktop"></i> Desktop App</span>
+                    <div class="card-title">Code Editor</div>
+                    <div class="card-desc">Lightweight code editor with syntax highlighting, auto-completion, and theme support</div>
+                    <button class="view-btn" onclick="openModal('personal2')"><i class="fas fa-eye"></i> View Project</button>
+                </div>
+            </div>
+            <div class="project-card" data-cat="android" data-title="Fitness Tracker">
+                <div class="card-img-wrap">
+                    <img src="https://images.pexels.com/photos/4162449/pexels-photo-4162449.jpeg" alt="Fitness" class="card-img" loading="lazy">
+                    <div class="card-overlay"><i class="fas fa-eye"></i></div>
+                </div>
+                <div class="card-body">
+                    <span class="card-tag"><i class="fab fa-android"></i> Android</span>
+                    <div class="card-title">Fitness Tracker</div>
+                    <div class="card-desc">Mobile app for tracking workouts, calories, and fitness goals with progress analytics</div>
+                    <button class="view-btn" onclick="openModal('personal3')"><i class="fas fa-eye"></i> View Project</button>
+                </div>
+            </div>
+            <div class="project-card" data-cat="ar" data-title="AR Educational Tool">
+                <div class="card-img-wrap">
+                    <img src="https://images.pexels.com/photos/8728380/pexels-photo-8728380.jpeg" alt="AR Education" class="card-img" loading="lazy">
+                    <div class="card-overlay"><i class="fas fa-eye"></i></div>
+                </div>
+                <div class="card-body">
+                    <span class="card-tag"><i class="fas fa-vr-cardboard"></i> AR</span>
+                    <div class="card-title">AR Educational Tool</div>
+                    <div class="card-desc">Augmented reality app for interactive learning with 3D models and animations</div>
+                    <button class="view-btn" onclick="openModal('personal4')"><i class="fas fa-eye"></i> View Project</button>
+                </div>
+            </div>
+            <div class="project-card" data-cat="vr" data-title="VR Space Explorer">
+                <div class="card-img-wrap">
+                    <img src="https://images.pexels.com/photos/73910/mars-mars-rover-space-travel-robot-73910.jpeg" alt="VR Space" class="card-img" loading="lazy">
+                    <div class="card-overlay"><i class="fas fa-eye"></i></div>
+                </div>
+                <div class="card-body">
+                    <span class="card-tag"><i class="fas fa-vr-cardboard"></i> VR</span>
+                    <div class="card-title">VR Space Explorer</div>
+                    <div class="card-desc">Virtual reality experience exploring planets and celestial bodies in our solar system</div>
+                    <button class="view-btn" onclick="openModal('personal5')"><i class="fas fa-eye"></i> View Project</button>
+                </div>
+            </div>
+            <div class="project-card" data-cat="cv" data-title="Face Recognition System">
+                <div class="card-img-wrap">
+                    <img src="https://images.pexels.com/photos/2582937/pexels-photo-2582937.jpeg" alt="Face Recognition" class="card-img" loading="lazy">
+                    <div class="card-overlay"><i class="fas fa-eye"></i></div>
+                </div>
+                <div class="card-body">
+                    <span class="card-tag"><i class="fas fa-eye"></i> Computer Vision</span>
+                    <div class="card-title">Face Recognition System</div>
+                    <div class="card-desc">Real-time face detection and recognition using deep learning algorithms</div>
+                    <button class="view-btn" onclick="openModal('personal6')"><i class="fas fa-eye"></i> View Project</button>
+                </div>
+            </div>
+            <div class="project-card" data-cat="iot" data-title="Weather Station">
+                <div class="card-img-wrap">
+                    <img src="https://images.pexels.com/photos/1446076/pexels-photo-1446076.jpeg" alt="Weather Station" class="card-img" loading="lazy">
+                    <div class="card-overlay"><i class="fas fa-eye"></i></div>
+                </div>
+                <div class="card-body">
+                    <span class="card-tag"><i class="fas fa-wifi"></i> IoT</span>
+                    <div class="card-title">Weather Station</div>
+                    <div class="card-desc">IoT weather monitoring system with sensors for temperature, humidity, and air quality</div>
+                    <button class="view-btn" onclick="openModal('personal7')"><i class="fas fa-eye"></i> View Project</button>
+                </div>
+            </div>
+            <div class="project-card" data-cat="website" data-title="Portfolio Generator">
+                <div class="card-img-wrap">
+                    <img src="https://images.pexels.com/photos/196645/pexels-photo-196645.jpeg" alt="Portfolio Generator" class="card-img" loading="lazy">
+                    <div class="card-overlay"><i class="fas fa-eye"></i></div>
+                </div>
+                <div class="card-body">
+                    <span class="card-tag"><i class="fas fa-globe"></i> Website</span>
+                    <div class="card-title">Portfolio Generator</div>
+                    <div class="card-desc">Tool for creating professional portfolio websites with customizable templates</div>
+                    <button class="view-btn" onclick="openModal('personal8')"><i class="fas fa-eye"></i> View Project</button>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<div class="modal-backdrop" id="modal">
+    <div class="modal-box">
+        <div class="modal-header">
+            <div class="modal-title-text" id="mTitle"></div>
+            <button class="modal-close-btn" onclick="closeModal()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="modal-body">
+            <div class="modal-section"><h3>GitHub</h3><p><a href="#" id="mLink" target="_blank">View on GitHub <i class="fas fa-external-link-alt"></i></a></p></div>
+            <div class="modal-section"><h3>Video Walkthrough</h3><div class="video-wrap"><iframe id="mVideo" src="" frameborder="0" allowfullscreen></iframe></div></div>
+            <div class="modal-section"><h3>Description</h3><p id="mDesc"></p></div>
+            <div class="modal-section"><h3>Challenge</h3><p id="mProblem"></p></div>
+            <div class="modal-section"><h3>Solution</h3><p id="mSolution"></p></div>
+            <div class="modal-section"><h3>Technologies</h3><div class="tech-list" id="mTech"></div></div>
+        </div>
+    </div>
+</div>
+
+<script src="shared.js"></script>
+<script>
+const projects = {
+    personal1:{title:"AI Chat Assistant",link:"https://github.com/username/ai-chat",video:"https://www.youtube.com/embed/dQw4w9WgXcQ",desc:"A conversational AI assistant built from scratch using transformer models and natural language processing. Features include context-aware responses, sentiment analysis, and multi-turn conversations with memory.",problem:"Building an AI that understands context across multiple conversation turns was challenging. The model needed to maintain conversation history while staying responsive and accurate.",solution:"Implemented a sliding window attention mechanism for context management. Used fine-tuned GPT model with custom training data. Added conversation summarization to maintain long-term context.",tech:["Python","PyTorch","Transformers","FastAPI","React","WebSocket"]},
+    personal2:{title:"Code Editor",link:"https://github.com/username/code-editor",video:"https://www.youtube.com/embed/dQw4w9WgXcQ",desc:"Modern code editor with features like syntax highlighting for 50+ languages, intelligent auto-completion, git integration, and customizable themes. Built with performance in mind.",problem:"Handling large files without performance degradation. Implementing accurate syntax highlighting across multiple languages. Creating smooth scrolling and editing experience.",solution:"Used virtual scrolling for large files. Implemented lazy loading and code splitting. Leveraged web workers for syntax highlighting. Created custom rendering engine optimized for text editing.",tech:["Electron","Monaco Editor","TypeScript","Node.js","CodeMirror"]},
+    personal3:{title:"Fitness Tracker",link:"https://github.com/username/fitness-tracker",video:"https://www.youtube.com/embed/dQw4w9WgXcQ",desc:"Comprehensive fitness tracking app with workout logging, calorie tracking, progress photos, and AI-powered workout recommendations. Includes social features for sharing achievements.",problem:"Accurately tracking exercises and calculating calories burned. Syncing data across devices. Creating engaging user experience to maintain daily usage.",solution:"Integrated with device sensors for accurate activity tracking. Implemented offline-first architecture with background sync. Added gamification elements and achievement system to boost engagement.",tech:["React Native","Firebase","TensorFlow Lite","HealthKit","Google Fit API"]},
+    personal4:{title:"AR Educational Tool",link:"https://github.com/username/ar-education",video:"https://www.youtube.com/embed/dQw4w9WgXcQ",desc:"Interactive augmented reality learning platform for science education. Students can explore 3D models of molecules, cells, planets, and more with detailed annotations and animations.",problem:"Creating accurate 3D models that are both educational and performant. Making AR tracking stable in various lighting conditions. Ensuring content is curriculum-aligned.",solution:"Collaborated with educators to design accurate models. Implemented multi-marker tracking for improved stability. Created progressive model loading based on device capability. Added voice narration for accessibility.",tech:["Unity","ARCore","Vuforia","C#","Blender","Firebase"]},
+    personal5:{title:"VR Space Explorer",link:"https://github.com/username/vr-space",video:"https://www.youtube.com/embed/dQw4w9WgXcQ",desc:"Immersive VR experience exploring our solar system with scientifically accurate planetary data, orbital mechanics, and interactive information panels. Includes guided tours and free exploration mode.",problem:"Representing accurate astronomical scales in VR while maintaining immersion. Preventing motion sickness. Loading high-quality planet textures efficiently.",solution:"Implemented logarithmic scaling for distances with visual indicators. Added teleportation and comfort vignette for motion. Used texture streaming with LOD system. Created interactive missions and discovery mechanics.",tech:["Unity","SteamVR","Oculus SDK","C#","NASA APIs","Photoshop"]},
+    personal6:{title:"Face Recognition System",link:"https://github.com/username/face-recognition",video:"https://www.youtube.com/embed/dQw4w9WgXcQ",desc:"Real-time face detection and recognition system capable of identifying and tracking multiple faces simultaneously. Features include age estimation, emotion detection, and face attribute analysis.",problem:"Achieving high accuracy across different ethnicities and lighting conditions. Processing multiple faces in real-time. Handling occlusions like masks and glasses.",solution:"Trained on diverse dataset with data augmentation. Optimized model architecture for real-time inference. Added face quality assessment before recognition. Implemented edge processing with no cloud storage of faces.",tech:["Python","OpenCV","Dlib","TensorFlow","Face Recognition","NumPy"]},
+    personal7:{title:"Weather Station",link:"https://github.com/username/weather-station",video:"https://www.youtube.com/embed/dQw4w9WgXcQ",desc:"DIY IoT weather monitoring station with multiple sensors tracking temperature, humidity, pressure, air quality, and UV index. Data is visualized through web dashboard with historical trends and forecasts.",problem:"Ensuring sensor accuracy and calibration. Making the system weather-resistant. Power management for continuous operation. Reliable data transmission in various conditions.",solution:"Implemented sensor calibration routines and outlier detection. Designed weatherproof enclosure with proper ventilation. Added solar panel with battery backup. Used MQTT with retry logic for reliable transmission.",tech:["Raspberry Pi","Arduino","Python","MQTT","InfluxDB","Grafana","DHT22"]},
+    personal8:{title:"Portfolio Generator",link:"https://github.com/username/portfolio-gen",video:"https://www.youtube.com/embed/dQw4w9WgXcQ",desc:"Web application that generates beautiful, responsive portfolio websites from user input. Features drag-and-drop customization, multiple themes, SEO optimization, and one-click deployment.",problem:"Creating truly customizable templates that don't look generic. Generating clean, maintainable code. Making deployment simple for non-technical users. Ensuring generated sites are performant.",solution:"Built modular component system with extensive customization options. Generated semantic HTML with optimized CSS. Integrated with Netlify and Vercel for one-click deployment. Implemented automatic image optimization and lazy loading.",tech:["React","Next.js","TailwindCSS","Netlify","Vercel","GitHub API"]}
+};
+
+function openModal(id){
+    const d=projects[id];
+    document.getElementById('mTitle').textContent=d.title;
+    document.getElementById('mLink').href=d.link;
+    document.getElementById('mVideo').src=d.video;
+    document.getElementById('mDesc').textContent=d.desc;
+    document.getElementById('mProblem').textContent=d.problem;
+    document.getElementById('mSolution').textContent=d.solution;
+    document.getElementById('mTech').innerHTML=d.tech.map(t=>`<span class="tech-badge">${t}</span>`).join('');
+    document.getElementById('modal').classList.add('open');
+}
+function closeModal(){
+    document.getElementById('modal').classList.remove('open');
+    document.getElementById('mVideo').src='';
+}
+document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+
+function setFilter(btn,cat){
+    document.querySelectorAll('.filter-pill').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.project-card').forEach(c=>{
+        c.style.display=(cat==='all'||c.dataset.cat===cat)?'':'none';
+    });
+}
+function filterCards(){
+    const q=document.getElementById('searchInput').value.toLowerCase();
+    document.querySelectorAll('.project-card').forEach(c=>{
+        const t=(c.dataset.title+' '+c.querySelector('.card-desc').textContent).toLowerCase();
+        c.style.display=t.includes(q)?'':'none';
+    });
+}
+</script>
+</body>
+</html>

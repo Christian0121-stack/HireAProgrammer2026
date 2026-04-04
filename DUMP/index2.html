@@ -1,0 +1,1487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HIRE A PROGRAMMER - Full Stack Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.light-mode {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        body.dark-mode {
+            background-color: #1a1a2e;
+            color: #eee;
+        }
+
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #001f3f 0%, #003d7a 50%, #0059b3 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.8s, transform 0.8s;
+            overflow: hidden;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            transform: scale(1.1);
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0;
+            animation: particleFade 0.8s ease-out forwards;
+        }
+
+        @keyframes particleFade {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0);
+            }
+        }
+
+        .loading-logo-container {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.6s ease-out;
+            z-index: 2;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 0 1rem;
+        }
+
+        .loading-logo {
+            font-size: 4rem;
+            color: white;
+            animation: float 2s ease-in-out infinite;
+        }
+
+        .loading-logo:nth-child(1) { animation-delay: 0s; }
+        .loading-logo:nth-child(2) { animation-delay: 0.15s; }
+        .loading-logo:nth-child(3) { animation-delay: 0.3s; }
+        .loading-logo:nth-child(4) { animation-delay: 0.45s; }
+        .loading-logo:nth-child(5) { animation-delay: 0.6s; }
+        .loading-logo:nth-child(6) { animation-delay: 0.75s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .loading-name {
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 0 1rem;
+            animation: fadeInUp 0.8s ease-out;
+            z-index: 2;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .loading-bar {
+            width: 300px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 2px;
+            overflow: hidden;
+            animation: fadeInUp 1s ease-out;
+            z-index: 2;
+        }
+
+        .loading-progress {
+            width: 0%;
+            height: 100%;
+            background: white;
+            border-radius: 2px;
+            animation: loading 2s ease-in-out forwards;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        @keyframes loading {
+            to {
+                width: 100%;
+            }
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            animation: fadeInModal 0.3s ease-out;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        @keyframes fadeInModal {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #001f3f 0%, #003d7a 50%, #0059b3 100%);
+            padding: 3rem;
+            border-radius: 16px;
+            text-align: center;
+            max-width: 500px;
+            animation: slideInModal 0.3s ease-out;
+            position: relative;
+        }
+
+        @keyframes slideInModal {
+            from {
+                transform: translateY(-50px) scale(0.9);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+
+        .modal-icon {
+            font-size: 4rem;
+            color: white;
+            margin-bottom: 1.5rem;
+            animation: float 2s ease-in-out infinite;
+        }
+
+        .modal-title {
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .modal-message {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+            opacity: 0;
+            transition: opacity 0.8s ease-in;
+            transform: translateY(20px);
+        }
+
+        .container.visible {
+            opacity: 1;
+            transform: translateY(0);
+            animation: slideIn 0.8s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+.sidebar {
+    width: 270px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0; /* <-- ito ang susi para hindi maputol */
+    height: auto; /* auto na dahil may top at bottom */
+    padding: 2rem 1.5rem;
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    overflow-y: auto; /* scroll kung mahaba */
+    z-index: 999;
+    transition: left 0.3s ease;
+}
+
+
+
+
+
+        .light-mode .sidebar {
+            background-color: white;
+            border-right-color: #e0e0e0;
+            color: #4a5568;
+        }
+
+        .dark-mode .sidebar {
+            background-color: #16213e;
+            border-right-color: #2a3f5f;
+            color: white;
+        }
+
+        .light-mode .sidebar .nav-link,
+        .light-mode .sidebar .profile-title,
+        .light-mode .sidebar .dark-mode-toggle span {
+            color: #4a5568;
+        }
+
+        .dark-mode .sidebar .nav-link,
+        .dark-mode .sidebar .profile-title,
+        .dark-mode .sidebar .dark-mode-toggle span {
+            color: white;
+        }
+
+        .profile {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+.profile-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-image: url("AVATAR.jpg");
+    background-size: cover;
+    background-position: center;
+    margin: 0 auto 1rem;
+}
+
+
+        .profile-name {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 0.3rem;
+        }
+
+        .profile-title {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-bottom: 1rem;
+        }
+
+        .resume-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: 100%;
+            padding: 0.7rem;
+            border: 1px solid currentColor;
+            border-radius: 6px;
+            background: transparent;
+            color: inherit;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .resume-btn:hover {
+            background: rgba(0, 89, 179, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .nav-menu {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .nav-item {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            padding: 0.7rem 1rem;
+            color: inherit;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.3s;
+            opacity: 0.7;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            opacity: 1;
+            background: rgba(0, 89, 179, 0.1);
+            transform: translateX(5px);
+        }
+
+        .nav-item.has-dropdown {
+            position: relative;
+        }
+
+        .dropdown-icon {
+            margin-left: auto;
+            transition: transform 0.3s;
+        }
+
+        .nav-item.has-dropdown.open .dropdown-icon {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            padding-left: 2.5rem;
+        }
+
+        .nav-item.has-dropdown.open .dropdown-menu {
+            max-height: 200px;
+        }
+
+        .dropdown-item {
+            padding: 0.5rem 1rem;
+            margin: 0.3rem 0;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+            opacity: 0.7;
+        }
+
+        .dropdown-item:hover {
+            opacity: 1;
+            background: rgba(0, 89, 179, 0.1);
+            transform: translateX(5px);
+        }
+
+        .dark-mode-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 2rem;
+            padding: 0.7rem 1rem;
+            cursor: pointer;
+        }
+
+        .toggle-switch {
+            width: 50px;
+            height: 26px;
+            background: #ccc;
+            border-radius: 13px;
+            position: relative;
+            transition: background 0.3s;
+        }
+
+        .toggle-switch.active {
+            background: #001f3f;
+        }
+
+        .toggle-slider {
+            width: 22px;
+            height: 22px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            transition: transform 0.3s;
+        }
+
+        .toggle-switch.active .toggle-slider {
+            transform: translateX(24px);
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 2rem;
+            overflow-x: hidden;
+            margin-left: 270px;
+        }
+
+        .date-display {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(0, 89, 179, 0.1);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            animation: slideDown 0.5s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, #001f3f 0%, #003d7a 50%, #0059b3 100%);
+            border-radius: 16px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.15;
+            z-index: 1;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .hero-text {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 600;
+            z-index: 2;
+            min-height: 60px;
+            position: relative;
+        }
+
+        .hero-text::after {
+            content: '|';
+            animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        .hero-image {
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+            object-position: center center;
+            border-radius: 12px;
+            z-index: 2;
+            transition: opacity 1s ease-in-out;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .sidebar-right {
+            width: 320px;
+            padding: 2rem 1.5rem;
+            transition: background-color 0.3s, transform 0.3s;
+            border-left: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .light-mode .sidebar-right {
+            background-color: white;
+            border-left-color: #e0e0e0;
+        }
+
+        .dark-mode .sidebar-right {
+            background-color: #16213e;
+            border-left-color: #2a3f5f;
+        }
+
+        .skill-section, .expertise-section, .contact-section {
+            margin-bottom: 2rem;
+            animation: fadeInRight 0.8s ease-out;
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-icons {
+            display: flex;
+            gap: 0.7rem;
+            flex-wrap: wrap;
+            overflow: hidden;
+            position: relative;
+            height: 120px;
+        }
+
+        .skill-icons-wrapper {
+            display: flex;
+            gap: 0.7rem;
+            animation: scroll-skills 25s linear infinite;
+        }
+
+        @keyframes scroll-skills {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .skill-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            transition: transform 0.3s;
+        }
+
+        .skill-icon:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .expertise-item {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 0.7rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+
+        .light-mode .expertise-item {
+            background: #f5f5f5;
+        }
+
+        .dark-mode .expertise-item {
+            background: #0f1624;
+        }
+
+        .expertise-item:hover {
+            transform: translateX(5px) scale(1.02);
+            box-shadow: 0 5px 15px rgba(0, 89, 179, 0.2);
+        }
+
+        .expertise-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s;
+        }
+
+        .expertise-item:hover .expertise-icon {
+            transform: rotate(360deg);
+        }
+
+        .stats-section {
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .stat-card {
+            padding: 1.5rem;
+            border-radius: 12px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .light-mode .stat-card {
+            background: white;
+        }
+
+        .dark-mode .stat-card {
+            background: #0f1624;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(0, 89, 179, 0.2);
+        }
+
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover .stat-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 0.3rem;
+        }
+
+        .stat-label {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        .featured-section {
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .featured-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .carousel-controls {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .carousel-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            background: rgba(0, 89, 179, 0.1);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .carousel-btn:hover {
+            background: rgba(0, 89, 179, 0.2);
+            transform: scale(1.1);
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .featured-item {
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .light-mode .featured-item {
+            background: white;
+        }
+
+        .dark-mode .featured-item {
+            background: #0f1624;
+        }
+
+        .featured-item:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(0, 89, 179, 0.3);
+        }
+
+        .featured-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            object-position: center center;
+            transition: transform 0.3s;
+        }
+
+        .featured-item:hover .featured-img {
+            transform: scale(1.1);
+        }
+
+        .featured-content {
+            padding: 1rem;
+        }
+
+        .featured-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .featured-description {
+            font-size: 0.85rem;
+            opacity: 0.7;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .featured-date {
+            font-size: 0.75rem;
+            opacity: 0.5;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .social-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            cursor: pointer;
+            background: rgba(0, 89, 179, 0.1);
+            font-size: 1.2rem;
+        }
+
+        .social-icon:hover {
+            transform: scale(1.15) rotate(5deg);
+            background: rgba(0, 89, 179, 0.2);
+        }
+
+        .contact-text {
+            font-size: 0.85rem;
+            opacity: 0.7;
+            margin-top: 1rem;
+            line-height: 1.6;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: rgba(0, 89, 179, 0.9);
+            border: none;
+            color: white;
+            cursor: pointer;
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+
+        .mobile-menu-toggle:hover {
+            transform: scale(1.1);
+        }
+
+      /* Responsive adjustments */
+@media (max-width: 1200px) {
+    .sidebar-right {
+        display: none;
+    }
+
+    .mobile-menu-toggle {
+        display: flex;
+    }
+
+    /* same sidebar, pero default hidden sa mobile */
+    .sidebar {
+        left: -270px; /* nakatago sa mobile */
+        box-shadow: none;
+    }
+
+    .sidebar.open {
+        left: 0; /* lalabas kapag open */
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .main-content {
+        width: 100%;
+        margin-left: 0;
+    }
+}
+
+        @media (max-width: 768px) {
+            .hero-section {
+                flex-direction: column;
+                text-align: center;
+                padding: 2rem;
+                min-height: 300px;
+            }
+
+            .hero-text {
+                font-size: 1.3rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .hero-image {
+                width: 200px;
+                height: 200px;
+            }
+
+            .loading-name {
+                font-size: 1.3rem;
+            }
+
+            .loading-bar {
+                width: 200px;
+            }
+
+            .loading-logo {
+                font-size: 2.5rem;
+            }
+
+            .loading-logo-container {
+                gap: 1rem;
+            }
+
+            .main-content {
+                padding: 1rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .featured-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .loading-logo {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body class="dark-mode">
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-logo-container">
+            <div class="loading-logo"><i class="fab fa-html5"></i></div>
+            <div class="loading-logo"><i class="fab fa-css3-alt"></i></div>
+            <div class="loading-logo"><i class="fab fa-js"></i></div>
+            <div class="loading-logo"><i class="fab fa-react"></i></div>
+            <div class="loading-logo"><i class="fab fa-angular"></i></div>
+            <div class="loading-logo"><i class="fab fa-linux"></i></div>
+        </div>
+        <div class="loading-name">HIRE A PROGRAMMER</div>
+        <div class="loading-bar">
+            <div class="loading-progress"></div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-icon" id="modalIcon">
+                <i class="fas fa-clock"></i>
+            </div>
+            <div class="modal-title">COMING SOON</div>
+            <div class="modal-message">This section is currently under development. Stay tuned for exciting updates!</div>
+        </div>
+    </div>
+
+    <button class="mobile-menu-toggle" id="mobileMenuToggle" onclick="toggleMobileMenu()">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div class="container" id="mainContainer">
+        <aside class="sidebar" id="sidebar">
+            <div class="profile">
+                <div class="profile-img"></div>
+                <div class="profile-name">CHRISTIAN JOSHUA P. MENDIGORIA</div>
+                <div class="profile-title">Full Stack Developer</div>
+                <a href="#" class="resume-btn" onclick="downloadResume(event)">
+                    <i class="fas fa-download"></i>
+                    <span>Resume</span>
+                </a>
+            </div>
+
+            <nav>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link active">
+                            <i class="fas fa-home"></i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-briefcase"></i>
+                            <span>Client Project</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-rocket"></i>
+                            <span>Personal Project</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" onclick="showComingSoonModal(event, 'fa-shield-alt')">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Cyber Security</span>
+                        </a>
+                    </li>
+                    <li class="nav-item has-dropdown">
+                        <a href="#" class="nav-link" onclick="toggleDropdown(event)">
+                            <i class="fas fa-palette"></i>
+                            <span>Creative Works</span>
+                            <i class="fas fa-chevron-down dropdown-icon"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-item" onclick="showComingSoonModal(event, 'fa-video')">Video Editing</div>
+                            <div class="dropdown-item" onclick="showComingSoonModal(event, 'fa-camera')">Photo Editing</div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" onclick="showComingSoonModal(event, 'fa-shopping-cart')">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span>Shop</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-star"></i>
+                            <span>Reviews</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-user"></i>
+                            <span>About Me</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="dark-mode-toggle" onclick="toggleDarkMode()">
+                <span><i class="fas fa-moon"></i> Dark Mode</span>
+                <div class="toggle-switch active" id="toggleSwitch">
+                    <div class="toggle-slider"></div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="date-display" id="dateDisplay">
+                <i class="fas fa-calendar"></i> Loading date...
+            </div>
+
+            <div class="hero-section" id="heroSection">
+                <div class="hero-text" id="typingText"></div>
+                <img src="https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg" alt="Developer" class="hero-image" id="heroImage">
+            </div>
+
+            <section class="stats-section">
+                <h2 class="section-title"><i class="fas fa-chart-bar"></i> Career Stats</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: rgba(168, 85, 247, 0.2); color: #a855f7;">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-value">2 <span style="font-size: 1rem; opacity: 0.7;">years</span></div>
+                        <div class="stat-label">Experience</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: rgba(251, 146, 60, 0.2); color: #fb923c;">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="stat-value">20</div>
+                        <div class="stat-label">Certificates</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: rgba(34, 197, 94, 0.2); color: #22c55e;">
+                            <i class="fas fa-folder"></i>
+                        </div>
+                        <div class="stat-value">16</div>
+                        <div class="stat-label">Projects</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: rgba(59, 130, 246, 0.2); color: #3b82f6;">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="stat-value">20</div>
+                        <div class="stat-label">Technologies</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="featured-section">
+                <div class="featured-controls">
+                    <h2 class="section-title"><i class="fas fa-star"></i> Featured</h2>
+                    <div class="carousel-controls">
+                        <button class="carousel-btn" onclick="scrollFeatured(-1)">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="carousel-btn" onclick="scrollFeatured(1)">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="featured-grid" id="featuredGrid">
+                    <div class="featured-item">
+                        <img src="https://images.pexels.com/photos/270348/pexels-photo-270348.jpeg" alt="Project 1" class="featured-img">
+                        <div class="featured-content">
+                            <div class="featured-title">E-Commerce Platform</div>
+                            <div class="featured-description">Full-stack e-commerce solution with payment integration and admin dashboard</div>
+                            <div class="featured-date"><i class="fas fa-calendar"></i> January 2024</div>
+                        </div>
+                    </div>
+                    <div class="featured-item">
+                        <img src="https://images.pexels.com/photos/1089438/pexels-photo-1089438.jpeg" alt="Project 2" class="featured-img">
+                        <div class="featured-content">
+                            <div class="featured-title">Task Management App</div>
+                            <div class="featured-description">Collaborative task management tool with real-time updates and notifications</div>
+                            <div class="featured-date"><i class="fas fa-calendar"></i> February 2024</div>
+                        </div>
+                    </div>
+                    <div class="featured-item">
+                        <img src="https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg" alt="Project 3" class="featured-img">
+                        <div class="featured-content">
+                            <div class="featured-title">Portfolio Website</div>
+                            <div class="featured-description">Modern portfolio design with interactive animations and responsive layout</div>
+                            <div class="featured-date"><i class="fas fa-calendar"></i> March 2024</div>
+                        </div>
+                    </div>
+                    <div class="featured-item">
+                        <img src="https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg" alt="Project 4" class="featured-img">
+                        <div class="featured-content">
+                            <div class="featured-title">Social Media Dashboard</div>
+                            <div class="featured-description">Analytics dashboard for tracking social media performance across platforms</div>
+                            <div class="featured-date"><i class="fas fa-calendar"></i> April 2024</div>
+                        </div>
+                    </div>
+                    <div class="featured-item">
+                        <img src="https://images.pexels.com/photos/3861958/pexels-photo-3861958.jpeg" alt="Project 5" class="featured-img">
+                        <div class="featured-content">
+                            <div class="featured-title">Weather App</div>
+                            <div class="featured-description">Real-time weather application with location-based forecasts and alerts</div>
+                            <div class="featured-date"><i class="fas fa-calendar"></i> May 2024</div>
+                        </div>
+                    </div>
+                    <div class="featured-item">
+                        <img src="https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg" alt="Project 6" class="featured-img">
+                        <div class="featured-content">
+                            <div class="featured-title">Fitness Tracker</div>
+                            <div class="featured-description">Track your workouts, calories, and progress with detailed analytics</div>
+                            <div class="featured-date"><i class="fas fa-calendar"></i> June 2024</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <aside class="sidebar-right">
+            <div class="skill-section">
+                <h3 class="section-title"><i class="fas fa-bullseye"></i> Skill Set</h3>
+                <div class="skill-icons">
+                    <div class="skill-icons-wrapper" id="skillIconsWrapper">
+                        <div class="skill-icon" style="background: #f0db4f; color: #323330;"><i class="fab fa-js"></i></div>
+                        <div class="skill-icon" style="background: #007acc; color: white;"><i class="fas fa-code"></i></div>
+                        <div class="skill-icon" style="background: #61dafb; color: #282c34;"><i class="fab fa-react"></i></div>
+                        <div class="skill-icon" style="background: #e34c26; color: white;"><i class="fab fa-html5"></i></div>
+                        <div class="skill-icon" style="background: #264de4; color: white;"><i class="fab fa-css3-alt"></i></div>
+                        <div class="skill-icon" style="background: #68a063; color: white;"><i class="fab fa-node"></i></div>
+                        <div class="skill-icon" style="background: #8892bf; color: white;"><i class="fab fa-php"></i></div>
+                        <div class="skill-icon" style="background: #00758f; color: white;"><i class="fas fa-database"></i></div>
+                        <div class="skill-icon" style="background: #dd0031; color: white;"><i class="fab fa-angular"></i></div>
+                        <div class="skill-icon" style="background: #367bf5; color: white;"><i class="fab fa-linux"></i></div>
+                        <div class="skill-icon" style="background: #f0db4f; color: #323330;"><i class="fab fa-js"></i></div>
+                        <div class="skill-icon" style="background: #007acc; color: white;"><i class="fas fa-code"></i></div>
+                        <div class="skill-icon" style="background: #61dafb; color: #282c34;"><i class="fab fa-react"></i></div>
+                        <div class="skill-icon" style="background: #e34c26; color: white;"><i class="fab fa-html5"></i></div>
+                        <div class="skill-icon" style="background: #264de4; color: white;"><i class="fab fa-css3-alt"></i></div>
+                        <div class="skill-icon" style="background: #68a063; color: white;"><i class="fab fa-node"></i></div>
+                        <div class="skill-icon" style="background: #8892bf; color: white;"><i class="fab fa-php"></i></div>
+                        <div class="skill-icon" style="background: #00758f; color: white;"><i class="fas fa-database"></i></div>
+                        <div class="skill-icon" style="background: #dd0031; color: white;"><i class="fab fa-angular"></i></div>
+                        <div class="skill-icon" style="background: #367bf5; color: white;"><i class="fab fa-linux"></i></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="expertise-section">
+                <h3 class="section-title"><i class="fas fa-user-cog"></i> Expertise</h3>
+                <div class="expertise-item">
+                    <div class="expertise-icon" style="background: rgba(168, 85, 247, 0.2);">
+                        <i class="fas fa-laptop-code" style="color: #a855f7;"></i>
+                    </div>
+                    <div>Web Development</div>
+                </div>
+                <div class="expertise-item">
+                    <div class="expertise-icon" style="background: rgba(251, 146, 60, 0.2);">
+                        <i class="fas fa-paint-brush" style="color: #fb923c;"></i>
+                    </div>
+                    <div>Graphic Design</div>
+                </div>
+                <div class="expertise-item">
+                    <div class="expertise-icon" style="background: rgba(34, 197, 94, 0.2);">
+                        <i class="fas fa-mobile-alt" style="color: #22c55e;"></i>
+                    </div>
+                    <div>Digital Marketing</div>
+                </div>
+                <div class="expertise-item">
+                    <div class="expertise-icon" style="background: rgba(59, 130, 246, 0.2);">
+                        <i class="fas fa-pencil-ruler" style="color: #3b82f6;"></i>
+                    </div>
+                    <div>UI / UX Design</div>
+                </div>
+            </div>
+
+            <div class="contact-section">
+                <h3 class="section-title"><i class="fas fa-envelope"></i> Get in touch</h3>
+                <div class="social-links">
+                    <div class="social-icon"><i class="fab fa-facebook"></i></div>
+                    <div class="social-icon"><i class="fab fa-twitter"></i></div>
+                    <div class="social-icon"><i class="fab fa-github"></i></div>
+                    <div class="social-icon"><i class="fab fa-linkedin"></i></div>
+                    <div class="social-icon"><i class="fab fa-instagram"></i></div>
+                    <div class="social-icon"><i class="fas fa-comments"></i></div>
+                </div>
+                <p class="contact-text">Let's build something great together — feel free to connect with me through any of the platforms above.</p>
+            </div>
+        </aside>
+    </div>
+
+    <script>
+        const typingTexts = [
+            "Turning Your Ideas into Code, One Line at a Time",
+            "Build. Launch. Grow",
+            "Let's Build Something Awesome Together!",
+            "From Concept to Code — We Deliver Results",
+            "Your Friendly Neighborhood Programmer"
+        ];
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typingSpeed = 100;
+        let typingTimeout = null;
+
+        const heroImages = [
+            "https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg",
+            "https://images.pexels.com/photos/3861958/pexels-photo-3861958.jpeg",
+            "https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg",
+            "https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg"
+        ];
+        let imageIndex = 0;
+        let imageInterval = null;
+
+        const loadingScreen = document.getElementById('loadingScreen');
+
+        loadingScreen.addEventListener('mousemove', function(e) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = e.clientX + 'px';
+            particle.style.top = e.clientY + 'px';
+            loadingScreen.appendChild(particle);
+
+            setTimeout(() => {
+                particle.remove();
+            }, 800);
+        });
+
+        setTimeout(() => {
+            loadingScreen.classList.add('hidden');
+            setTimeout(() => {
+                document.getElementById('mainContainer').classList.add('visible');
+                startTyping();
+                startImageSlideshow();
+            }, 100);
+        }, 5000); /*DITO TATAGALAN ANG LOADING SCREEN*/
+
+        function startTyping() {
+            const element = document.getElementById('typingText');
+            if (!element) return;
+
+            const currentText = typingTexts[textIndex];
+
+            if (!isDeleting && charIndex <= currentText.length) {
+                element.textContent = currentText.substring(0, charIndex);
+                charIndex++;
+                typingSpeed = 100;
+            } else if (isDeleting && charIndex >= 0) {
+                element.textContent = currentText.substring(0, charIndex);
+                charIndex--;
+                typingSpeed = 50;
+            }
+
+            if (charIndex === currentText.length + 1 && !isDeleting) {
+                typingSpeed = 2000;
+                isDeleting = true;
+            }
+
+            if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % typingTexts.length;
+                typingSpeed = 500;
+            }
+
+            typingTimeout = setTimeout(startTyping, typingSpeed);
+        }
+
+        function startImageSlideshow() {
+            if (imageInterval) {
+                clearInterval(imageInterval);
+            }
+
+            imageInterval = setInterval(() => {
+                const heroImg = document.getElementById('heroImage');
+                const heroSection = document.getElementById('heroSection');
+
+                if (!heroImg || !heroSection) {
+                    clearInterval(imageInterval);
+                    return;
+                }
+
+                heroImg.style.opacity = '0';
+
+                setTimeout(() => {
+                    imageIndex = (imageIndex + 1) % heroImages.length;
+                    const currentBg = heroImages[imageIndex];
+
+                    heroImg.src = currentBg;
+
+                    const styleSheets = document.styleSheets;
+                    for (let i = 0; i < styleSheets.length; i++) {
+                        try {
+                            const rules = styleSheets[i].cssRules || styleSheets[i].rules;
+                            for (let j = 0; j < rules.length; j++) {
+                                if (rules[j].selectorText === '.hero-section::before') {
+                                    rules[j].style.backgroundImage = `url(${currentBg})`;
+                                    break;
+                                }
+                            }
+                        } catch(e) {
+                            console.log('Cannot access stylesheet');
+                        }
+                    }
+
+                    setTimeout(() => {
+                        heroImg.style.opacity = '1';
+                    }, 50);
+                }, 1000);
+            }, 5000);
+        }
+
+        function updateDate() {
+            const now = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const dateString = now.toLocaleDateString('en-US', options);
+            const dateDisplay = document.getElementById('dateDisplay');
+            if (dateDisplay) {
+                dateDisplay.innerHTML = `<i class="fas fa-calendar"></i> ${dateString}`;
+            }
+        }
+
+        updateDate();
+        setInterval(updateDate, 60000);
+
+        function toggleDarkMode() {
+            const body = document.body;
+            const toggle = document.getElementById('toggleSwitch');
+
+            if (body.classList.contains('light-mode')) {
+                body.classList.remove('light-mode');
+                body.classList.add('dark-mode');
+                toggle.classList.add('active');
+            } else {
+                body.classList.remove('dark-mode');
+                body.classList.add('light-mode');
+                toggle.classList.remove('active');
+            }
+        }
+
+        function downloadResume(event) {
+            event.preventDefault();
+            alert('Resume download functionality would be implemented here!');
+        }
+
+        function toggleDropdown(event) {
+            event.preventDefault();
+            const navItem = event.currentTarget.parentElement;
+            navItem.classList.toggle('open');
+        }
+
+        function toggleMobileMenu() {
+            const sidebar = document.getElementById('sidebar');
+            const toggle = document.getElementById('mobileMenuToggle');
+            sidebar.classList.toggle('open');
+
+            const icon = toggle.querySelector('i');
+            if (sidebar.classList.contains('open')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        }
+
+        function scrollFeatured(direction) {
+            const grid = document.getElementById('featuredGrid');
+            const scrollAmount = 280;
+            grid.scrollBy({
+                left: direction * scrollAmount,
+                behavior: 'smooth'
+            });
+        }
+
+        function showComingSoonModal(event, iconClass) {
+            event.preventDefault();
+            event.stopPropagation();
+            const modal = document.getElementById('modalOverlay');
+            const modalIcon = document.getElementById('modalIcon');
+            modalIcon.innerHTML = `<i class="fas ${iconClass}"></i>`;
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modalOverlay');
+            modal.classList.remove('active');
+        }
+
+        document.getElementById('modalOverlay').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        document.addEventListener('click', (e) => {
+            const sidebar = document.getElementById('sidebar');
+            const toggle = document.getElementById('mobileMenuToggle');
+            if (sidebar.classList.contains('open') &&
+                !sidebar.contains(e.target) &&
+                !toggle.contains(e.target)) {
+                toggleMobileMenu();
+            }
+        });
+
+        window.addEventListener('beforeunload', () => {
+            if (typingTimeout) clearTimeout(typingTimeout);
+            if (imageInterval) clearInterval(imageInterval);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me | Christian Joshua P. Mendigoria</title>
+
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <link rel="stylesheet" href="shared.css">
+    <style>
+        .am-header-banner {
+            background: linear-gradient(135deg, #001f3f 0%, #003d7a 50%, #0059b3 100%);
+            border-radius: 20px; padding: 2.5rem; margin-bottom: 2rem; color: white;
+            animation: fadeInDown 0.55s ease both;
+        }
+        .am-header-banner h1 { font-size: 2.2rem; font-weight: 800; display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.4rem; }
+        .am-header-banner p { opacity: 0.8; font-size: 0.95rem; }
+
+        .info-section {
+            border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem;
+            transition: all 0.3s; animation: fadeInUp 0.5s ease both;
+        }
+        .info-section:nth-child(1){animation-delay:0.10s}
+        .info-section:nth-child(2){animation-delay:0.15s}
+        .info-section:nth-child(3){animation-delay:0.20s}
+        .info-section:nth-child(4){animation-delay:0.25s}
+        .info-section:nth-child(5){animation-delay:0.30s}
+        .info-section:nth-child(6){animation-delay:0.35s}
+        .dark-mode .info-section { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); }
+        .light-mode .info-section { background: white; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+        .info-section:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,89,179,0.2); }
+
+        .section-title { font-size: 1.3rem; font-weight: 700; display: flex; align-items: center; gap: 0.6rem; color: #0059b3; margin-bottom: 1.4rem; }
+        .dark-mode .section-title { color: #60a5fa; }
+
+        .info-item {
+            padding: 1.2rem; border-radius: 10px; margin-bottom: 0.8rem;
+            transition: all 0.3s; cursor: default;
+        }
+        .dark-mode .info-item { background: rgba(255,255,255,0.03); }
+        .light-mode .info-item { background: #f5f8ff; }
+        .info-item:hover { transform: translateX(6px); box-shadow: 0 4px 14px rgba(0,89,179,0.18); }
+        .info-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem; }
+        .info-icon {
+            width: 48px; height: 48px; border-radius: 10px; flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center; font-size: 1.3rem;
+            transition: transform 0.3s;
+        }
+        .info-item:hover .info-icon { transform: rotate(360deg); }
+        .info-content h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.2rem; }
+        .info-meta { font-size: 0.82rem; opacity: 0.6; }
+        .info-description { margin-top: 0.7rem; line-height: 1.7; font-size: 0.88rem; opacity: 0.8; }
+
+        .certificate-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 1rem; }
+        .certificate-card {
+            padding: 1.4rem; border-radius: 12px; text-align: center;
+            transition: all 0.3s; cursor: default;
+        }
+        .dark-mode .certificate-card { background: rgba(255,255,255,0.03); }
+        .light-mode .certificate-card { background: #f5f8ff; }
+        .certificate-card:hover { transform: translateY(-5px) scale(1.04); box-shadow: 0 10px 24px rgba(0,89,179,0.25); }
+        .certificate-icon {
+            width: 60px; height: 60px; margin: 0 auto 0.8rem; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center; font-size: 1.8rem;
+            background: linear-gradient(135deg, #001f3f, #0059b3); color: white;
+        }
+        .certificate-name { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.3rem; }
+        .certificate-org { font-size: 0.78rem; opacity: 0.6; }
+
+        .github-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+        .stat-box { padding: 1.5rem; border-radius: 10px; text-align: center; transition: all 0.3s; }
+        .dark-mode .stat-box { background: rgba(255,255,255,0.03); }
+        .light-mode .stat-box { background: #f5f8ff; }
+        .stat-box:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,89,179,0.2); }
+        .stat-value { font-size: 2.4rem; font-weight: 800; color: #0059b3; margin-bottom: 0.3rem; }
+        .dark-mode .stat-value { color: #60a5fa; }
+        .stat-label { font-size: 0.85rem; opacity: 0.6; }
+
+        .social-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; }
+        .social-card {
+            padding: 1.4rem; border-radius: 12px; display: flex; align-items: center; gap: 1rem;
+            transition: all 0.3s; cursor: pointer; text-decoration: none; color: inherit;
+        }
+        .dark-mode .social-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); }
+        .light-mode .social-card { background: #f5f8ff; border: 1px solid rgba(0,0,0,0.04); }
+        .social-card:hover { transform: translateX(8px); box-shadow: 0 8px 24px rgba(0,89,179,0.2); }
+        .social-icon-large {
+            width: 52px; height: 52px; border-radius: 12px; flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.7rem; color: white; transition: transform 0.3s;
+        }
+        .social-card:hover .social-icon-large { transform: scale(1.15) rotate(5deg); }
+        .social-info h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.2rem; }
+        .social-handle { font-size: 0.82rem; opacity: 0.6; }
+    </style>
+</head>
+<body class="dark-mode">
+<button class="mobile-menu-toggle" id="mobileMenuToggle" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></button>
+
+<div class="page-container">
+    <aside class="sidebar" id="sidebar">
+        <div class="profile">
+            <div class="profile-avatar"><i class="fas fa-user"></i></div>
+            <div class="profile-name">CHRISTIAN JOSHUA P. MENDIGORIA</div>
+            <div class="profile-role">Full Stack Developer</div>
+            <a href="#" class="resume-btn" onclick="downloadResume(event)"><i class="fas fa-download"></i> Resume</a>
+        </div>
+        <nav>
+            <ul class="nav-list">
+                <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i><span>Home</span></a></li>
+                <li><a href="2) ClientProject.html" class="nav-link"><i class="fas fa-briefcase"></i><span>Project</span></a></li>
+
+                <li><a href="6) Shop.html" class="nav-link"><i class="fas fa-shopping-cart"></i><span>Shop</span></a></li>
+                <li><a href="7) Reviews.html" class="nav-link"><i class="fas fa-star"></i><span>Reviews</span></a></li>
+                <li><a href="8) AboutMe.html" class="nav-link active"><i class="fas fa-user"></i><span>About Me</span></a></li>
+                <li><a href="9) TypingGame.html" class="nav-link nav-link-game"><i class="fas fa-gamepad"></i><span>Play A Game</span></a></li>
+            </ul>
+        </nav>
+        <div class="mode-toggle" onclick="toggleMode()">
+            <span><i class="fas fa-moon" id="modeIcon"></i> <span id="modeLabel">Dark Mode</span></span>
+            <div class="toggle-track" id="toggleTrack"><div class="toggle-thumb"></div></div>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <div class="am-header-banner">
+            <h1><i class="fas fa-user"></i> About Me</h1>
+            <p>Get to know more about my journey, skills, and experience</p>
+        </div>
+
+        <div class="info-section">
+            <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Education</h2>
+            <div class="info-item">
+                <div class="info-header">
+                    <div class="info-icon" style="background:rgba(59,130,246,0.15);color:#3b82f6;"><i class="fas fa-university"></i></div>
+                    <div class="info-content">
+                        <h3>Bachelor of Science in Computer Science</h3>
+                        <div class="info-meta">University of the Philippines | 2018 - 2022</div>
+                    </div>
+                </div>
+                <div class="info-description">Graduated with honors, focusing on software engineering, web development, and database systems. Completed multiple capstone projects involving full-stack development.</div>
+            </div>
+            <div class="info-item">
+                <div class="info-header">
+                    <div class="info-icon" style="background:rgba(168,85,247,0.15);color:#a855f7;"><i class="fas fa-school"></i></div>
+                    <div class="info-content">
+                        <h3>Science, Technology, Engineering and Mathematics</h3>
+                        <div class="info-meta">Philippine Science High School | 2016 - 2018</div>
+                    </div>
+                </div>
+                <div class="info-description">Specialized in STEM subjects with emphasis on computer programming, mathematics, and problem-solving. Participated in various coding competitions.</div>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <h2 class="section-title"><i class="fas fa-briefcase"></i> Work History</h2>
+            <div class="info-item">
+                <div class="info-header">
+                    <div class="info-icon" style="background:rgba(34,197,94,0.15);color:#22c55e;"><i class="fas fa-code"></i></div>
+                    <div class="info-content">
+                        <h3>Senior Full Stack Developer</h3>
+                        <div class="info-meta">Tech Solutions Inc. | 2023 - Present</div>
+                    </div>
+                </div>
+                <div class="info-description">Leading development team in building scalable web applications. Implementing modern tech stack including React, Node.js, and cloud services. Mentoring junior developers and conducting code reviews.</div>
+            </div>
+            <div class="info-item">
+                <div class="info-header">
+                    <div class="info-icon" style="background:rgba(251,146,60,0.15);color:#fb923c;"><i class="fas fa-laptop-code"></i></div>
+                    <div class="info-content">
+                        <h3>Full Stack Developer</h3>
+                        <div class="info-meta">Digital Innovations Corp. | 2022 - 2023</div>
+                    </div>
+                </div>
+                <div class="info-description">Developed and maintained web applications for various clients. Worked on database optimization, API development, and front-end implementation using modern frameworks.</div>
+            </div>
+            <div class="info-item">
+                <div class="info-header">
+                    <div class="info-icon" style="background:rgba(59,130,246,0.15);color:#3b82f6;"><i class="fas fa-graduation-cap"></i></div>
+                    <div class="info-content">
+                        <h3>Junior Web Developer (Internship)</h3>
+                        <div class="info-meta">StartUp Philippines | 2021 - 2022</div>
+                    </div>
+                </div>
+                <div class="info-description">Assisted senior developers in building web applications. Learned industry best practices in code quality, version control, and agile development methodologies.</div>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <h2 class="section-title"><i class="fas fa-trophy"></i> Certificates</h2>
+            <div class="certificate-grid">
+                <div class="certificate-card">
+                    <div class="certificate-icon"><i class="fab fa-aws"></i></div>
+                    <div class="certificate-name">AWS Certified Developer</div>
+                    <div class="certificate-org">Amazon Web Services</div>
+                </div>
+                <div class="certificate-card">
+                    <div class="certificate-icon"><i class="fab fa-google"></i></div>
+                    <div class="certificate-name">Google Professional Cloud Developer</div>
+                    <div class="certificate-org">Google Cloud</div>
+                </div>
+                <div class="certificate-card">
+                    <div class="certificate-icon"><i class="fab fa-react"></i></div>
+                    <div class="certificate-name">React Advanced Concepts</div>
+                    <div class="certificate-org">Udemy</div>
+                </div>
+                <div class="certificate-card">
+                    <div class="certificate-icon"><i class="fas fa-shield-alt"></i></div>
+                    <div class="certificate-name">Cybersecurity Fundamentals</div>
+                    <div class="certificate-org">CompTIA Security+</div>
+                </div>
+                <div class="certificate-card">
+                    <div class="certificate-icon"><i class="fab fa-python"></i></div>
+                    <div class="certificate-name">Python for Data Science</div>
+                    <div class="certificate-org">Coursera</div>
+                </div>
+                <div class="certificate-card">
+                    <div class="certificate-icon"><i class="fas fa-database"></i></div>
+                    <div class="certificate-name">Database Administration</div>
+                    <div class="certificate-org">Oracle</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <h2 class="section-title"><i class="fab fa-github"></i> GitHub Stats</h2>
+            <div class="github-stats">
+                <div class="stat-box"><div class="stat-value">127</div><div class="stat-label">Repositories</div></div>
+                <div class="stat-box"><div class="stat-value">2.4k</div><div class="stat-label">Contributions</div></div>
+                <div class="stat-box"><div class="stat-value">84</div><div class="stat-label">Pull Requests</div></div>
+                <div class="stat-box"><div class="stat-value">312</div><div class="stat-label">Commits</div></div>
+            </div>
+            <img src="https://github-readme-stats.vercel.app/api?username=christianjmendigoria&show_icons=true&theme=dark&hide_border=true&bg_color=0d1117" alt="GitHub Stats" style="width:100%;border-radius:10px;display:block;" loading="lazy" decoding="async" onerror="this.style.display='none'">
+        </div>
+
+        <div class="info-section">
+            <h2 class="section-title"><i class="fas fa-share-alt"></i> Social Media</h2>
+            <div class="social-grid">
+                <a href="https://facebook.com/HireAProgrammer0121" target="_blank" class="social-card">
+                    <div class="social-icon-large" style="background:#1877f2;"><i class="fab fa-facebook-f"></i></div>
+                    <div class="social-info"><h3>Facebook</h3><div class="social-handle">@HireAProgrammer0121</div></div>
+                </a>
+                <a href="#" class="social-card">
+                    <div class="social-icon-large" style="background:#333;"><i class="fab fa-github"></i></div>
+                    <div class="social-info"><h3>GitHub</h3><div class="social-handle">@christianjmendigoria</div></div>
+                </a>
+                <a href="#" class="social-card">
+                    <div class="social-icon-large" style="background:#0077b5;"><i class="fab fa-linkedin-in"></i></div>
+                    <div class="social-info"><h3>LinkedIn</h3><div class="social-handle">Christian Joshua Mendigoria</div></div>
+                </a>
+                <a href="#" class="social-card">
+                    <div class="social-icon-large" style="background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);"><i class="fab fa-instagram"></i></div>
+                    <div class="social-info"><h3>Instagram</h3><div class="social-handle">@christianjmendigoria</div></div>
+                </a>
+                <a href="#" class="social-card">
+                    <div class="social-icon-large" style="background:#1da1f2;"><i class="fab fa-twitter"></i></div>
+                    <div class="social-info"><h3>Twitter / X</h3><div class="social-handle">@christianjmendigoria</div></div>
+                </a>
+                <a href="#" class="social-card">
+                    <div class="social-icon-large" style="background:#5865f2;"><i class="fab fa-discord"></i></div>
+                    <div class="social-info"><h3>Discord</h3><div class="social-handle">cjmendigoria#0000</div></div>
+                </a>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script src="shared.js"></script>
+</body>
+</html>
